@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💘</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffe4e1);
+    font-family: 'Comic Sans MS', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255,255,255,0.8);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px pink;
+    max-width: 90%;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+.no {
+    background: gray;
+    color: white;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    color: red;
+    font-size: 24px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+.big-love {
+    font-size: 48px;
+    color: #ff0055;
+    margin-top: 30px;
+    text-shadow: 2px 2px white;
+}
+
+img {
+    width: 180px;
+    border-radius: 20px;
+    margin: 15px;
+    box-shadow: 0 0 15px pink;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="stage1">
+    <h2>Mr Sujal Ghupta,</h2>
+    <h3>will you do the honour of becoming my Valentine? 💘</h3>
+    <p><i>taking time has its own consequences…</i></p>
+
+    <button class="yes" onclick="yesClicked()">Yes</button>
+    <button class="no">❌ No</button>
+</div>
+
+<div class="container hidden" id="stage2">
+    <h3>Not following the rules can take your life 😈</h3>
+    <button onclick="becomeFurry()">Become a furry 🐾</button>
+    <button onclick="secondChance()">Have the chance to choose again</button>
+</div>
+
+<div class="container hidden" id="stage3">
+    <h2>Mr Sujal Ghupta,</h2>
+    <h3>will you do the honour of becoming my Valentine? 💖</h3>
+    <button class="yes" onclick="finalYes()">Yes</button>
+</div>
+
+<div class="container hidden" id="stage4">
+    <h2>YES MY BOKACHODA YOU CAN'T ESCAPE NOW 😈❤️</h2>
+
+    <h3>What do you think we should do today?</h3>
+    <button onclick="finalStage()">☕ Have a coffee date?</button>
+    <button onclick="finalStage()">📱 Face time?</button>
+    <button onclick="finalStage()">🍰 Eat dessert & gossip?</button>
+</div>
+
+<div class="container hidden" id="stage5">
+    <div class="big-love">I LOVE YOU SO MUCH 💖</div>
+
+    <!-- YOUR PHOTOS -->
+    <div>
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+    </div>
+</div>
+
+<script>
+let timer = setTimeout(() => {
+    document.getElementById("stage1").classList.add("hidden");
+    document.getElementById("stage2").classList.remove("hidden");
+}, 5000);
+
+function yesClicked() {
+    clearTimeout(timer);
+    document.getElementById("stage1").classList.add("hidden");
+    document.getElementById("stage4").classList.remove("hidden");
+}
+
+function becomeFurry() {
+    document.querySelector("#stage2 button").style.display = "none";
+}
+
+function secondChance() {
+    document.getElementById("stage2").classList.add("hidden");
+    document.getElementById("stage3").classList.remove("hidden");
+}
+
+function finalYes() {
+    document.getElementById("stage3").classList.add("hidden");
+    document.getElementById("stage4").classList.remove("hidden");
+}
+
+function finalStage() {
+    document.getElementById("stage4").classList.add("hidden");
+    document.getElementById("stage5").classList.remove("hidden");
+    startHearts();
+}
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 150);
+}
+</script>
+
+</body>
+</html>
